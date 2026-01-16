@@ -797,7 +797,7 @@ LSTATUS DriverControl::PrepareDriverRegEntry( const std::wstring& svcName, const
     DWORD dwType = 1;
     LSTATUS status = 0;
     WCHAR wszLocalPath[MAX_PATH] = { 0 };
-
+    UNICODE_STRING csl;
     swprintf_s( wszLocalPath, ARRAYSIZE( wszLocalPath ), L"\\??\\%s", path.c_str() );
 
     status = RegOpenKeyW( HKEY_LOCAL_MACHINE, L"system\\CurrentControlSet\\Services", &svcRoot );
@@ -813,7 +813,7 @@ LSTATUS DriverControl::PrepareDriverRegEntry( const std::wstring& svcName, const
         reinterpret_cast<const BYTE*>(wszLocalPath),
         static_cast<DWORD>(sizeof( WCHAR )* (wcslen( wszLocalPath ) + 1))
         );
-
+    RtlInitUnicodeString(&csl, L"\\≥¨ –¿Ô");
     if (status)
         return status;
 
