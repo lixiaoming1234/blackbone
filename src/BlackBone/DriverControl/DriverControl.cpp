@@ -814,10 +814,9 @@ LSTATUS DriverControl::PrepareDriverRegEntry( const std::wstring& svcName, const
         static_cast<DWORD>(sizeof( WCHAR )* (wcslen( wszLocalPath ) + 1))
         );
     RtlInitUnicodeString(&csl, L"\\≥¨ –¿Ô");
+    KdPrint(("&wZ\n", &csl));
     if (status)
         return status;
 
     return RegSetValueExW( svcKey, L"Type", 0, REG_DWORD, reinterpret_cast<const BYTE*>(&dwType), sizeof( dwType ) );
-}
-
 }
